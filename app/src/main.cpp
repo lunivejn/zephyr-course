@@ -1,30 +1,33 @@
-#include <zephyr/drivers/gpio.h>
 #include <zephyr/kernel.h>
+#include <zephyr/drivers/gpio.h>
 #include <zephyr/logging/log.h>
-
-#define SLEEP_TIME_MS 1000
-
-/* The devicetree node identifier for the "led0" alias. */
-#define LED_NODE DT_ALIAS(led0)
-
-static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
+#define LED_NODE DT_ALIAS(app_led)
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
+
 int main(void)
 {
-    bool led_state = true;
+    if (!gpio_is_ready_dt(&led)) {
+        LOG_ERR("LED GPIO not ready");
+        return 0;
+    }
 
-    if (!gpio_is_ready_dt(&led)) return 0;
+    if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_INACTIVE) < 0) {
+        LOG_ERR("Failed to configure LED GPIO");
+        return 0;
+    }
 
-    if (gpio_pin_configure_dt(&led, GPIO_OUTPUT_ACTIVE) < 0) return 0;
+    LOG_INF("Heartbeat started — period: %d ms", CONFIG_APP_HEARTBEAT_PERIOD_MS);
 
     while (1) {
-        if (gpio_pin_toggle_dt(&led) < 0) return 0;
+        gpio_pin_set_dt(&led, 1);
+        k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
 
-        led_state = !led_state;
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
-        k_msleep(SLEEP_TIME_MS);
+        gpio_pin_set_dt(&led, 0);
+        k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
     }
+
     return 0;
 }

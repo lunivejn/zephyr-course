@@ -56,7 +56,16 @@ menu "Expert Settings"
 endmenu
 
 endif
-    
+
 endif
+
+config APP_HEARTBEAT_PERIOD_MS
+    int "Heartbeat LED blink period (milliseconds)"
+    default 500
+    range 100 2000
+    help
+      Controls the LED blinking period in milliseconds.
+      Range: 100ms (fast blink) to 2000ms (slow blink).
+      Default: 500ms
 
 source "Kconfig.zephyr"
