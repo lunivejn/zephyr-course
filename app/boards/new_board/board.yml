@@ -1,0 +1,4 @@
+board:
+  name: new_board
+  full_name: NEW_BOARD
+  vendor: espressif
