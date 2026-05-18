@@ -1,0 +1,55 @@
+cmake:
+  application:
+    configuration-dir: '/home/luni/workspace/zephyr-course/tests/ring_buf'
+    source-dir: '/home/luni/workspace/zephyr-course/tests/ring_buf'
+  board:
+    name: 'native_sim'
+    path:
+     - '/home/luni/workspace/deps/zephyr/boards/native/native_sim'
+    qualifiers: 'native'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/luni/workspace/deps/zephyr/dts/bindings'
+    files:
+     - '/home/luni/workspace/deps/zephyr/boards/native/native_sim/native_sim.dts'
+    include-dirs:
+     - '/home/luni/workspace/deps/modules/hal/ambiq/dts'
+     - '/home/luni/workspace/deps/modules/hal/atmel/include'
+     - '/home/luni/workspace/deps/modules/hal/bouffalolab/include'
+     - '/home/luni/workspace/deps/modules/hal/bouffalolab/include/zephyr'
+     - '/home/luni/workspace/deps/modules/hal/gigadevice/include'
+     - '/home/luni/workspace/deps/modules/hal/microchip/include'
+     - '/home/luni/workspace/deps/modules/hal/microchip/dts'
+     - '/home/luni/workspace/deps/modules/hal/nuvoton/dts'
+     - '/home/luni/workspace/deps/modules/hal/nxp/dts'
+     - '/home/luni/workspace/deps/modules/hal/stm32/dts'
+     - '/home/luni/workspace/deps/modules/hal/ti/dts'
+     - '/home/luni/workspace/deps/zephyr/include'
+     - '/home/luni/workspace/deps/zephyr/include/zephyr'
+     - '/home/luni/workspace/deps/zephyr/dts/common'
+     - '/home/luni/workspace/deps/zephyr/dts/vendor'
+     - '/home/luni/workspace/deps/zephyr/dts/rx'
+     - '/home/luni/workspace/deps/zephyr/dts/x86'
+     - '/home/luni/workspace/deps/zephyr/dts/xtensa'
+     - '/home/luni/workspace/deps/zephyr/dts/sparc'
+     - '/home/luni/workspace/deps/zephyr/dts/riscv'
+     - '/home/luni/workspace/deps/zephyr/dts/posix'
+     - '/home/luni/workspace/deps/zephyr/dts/arm64'
+     - '/home/luni/workspace/deps/zephyr/dts/arm'
+     - '/home/luni/workspace/deps/zephyr/dts/arc'
+     - '/home/luni/workspace/deps/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/luni/workspace/deps/zephyr/boards/native/native_sim/native_sim_defconfig'
+     - '/home/luni/workspace/zephyr-course/tests/ring_buf/prj.conf'
+     - '/home/luni/workspace/zephyr-course/twister-out/native_sim_native/host/homework.unit.ring_buf/zephyr/misc/generated/extra_kconfig_options.conf'
+    user-files:
+     - '/home/luni/workspace/zephyr-course/tests/ring_buf/prj.conf'
+  toolchain:
+    name: 'host'
+    path: ''
+  zephyr:
+    version: '4.2.0'
+    zephyr-base: '/home/luni/workspace/deps/zephyr'
+version: '0.1.0'
